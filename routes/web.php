@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('recipe/index');
 });
+
+Route::get('/', [RecipeController::class, 'index']);
+
+Route::get('recipe/create', [RecipeController::class, 'create']);
