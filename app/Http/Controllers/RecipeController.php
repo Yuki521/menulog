@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RecipePostRequest;
 use App\Models\Recipe;
 use Illuminate\View\View;
 
@@ -24,5 +25,11 @@ class RecipeController extends Controller
     public function create(): View
     {
         return view('recipe.create');
+    }
+
+    public function store(RecipePostRequest $request, Recipe $recipe)
+    {
+        $recipe->fill($request->all())->save();
+        return back()->with('result', 'レシピが追加されました');
     }
 }

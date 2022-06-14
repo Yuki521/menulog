@@ -10,6 +10,10 @@ class Recipe extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'calorie'
+    ];
     /**
      * @return BelongsToMany
      */
