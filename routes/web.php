@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TopController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,5 @@ Route::get('recipe/create', [RecipeController::class, 'create'])->name('recipe.c
 Route::post('recipe/create', [RecipeController::class, 'store'])->name('recipe.create');
 
 Route::delete('/', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+
+Route::resources(['menu' => MenuController::class]);
