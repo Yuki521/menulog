@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/', [RecipeController::class, 'index']);
 
-Route::get('recipe/create', [RecipeController::class, 'create']);
+Route::get('recipe/create', [RecipeController::class, 'create'])->name('recipe.create');
 
-Route::post('recipe/create', [RecipeController::class, 'store']);
+Route::post('recipe/create', [RecipeController::class, 'store'])->name('recipe.create');
+
+Route::delete('/', [RecipeController::class, 'destroy'])->name('recipe.destroy');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipePostRequest;
 use App\Models\Recipe;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class RecipeController extends Controller
@@ -31,5 +32,12 @@ class RecipeController extends Controller
     {
         $recipe->fill($request->all())->save();
         return back()->with('result', 'レシピが追加されました');
+    }
+
+    public function destroy(Request $request, Recipe $recipe)
+    {
+        $input = $request->only(['recipeId']);
+        $recipe::destroy($input['recipeId']);
+        return back()->with('result', 'レシピが削除されました');
     }
 }
