@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Recipe;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $menus = Menu::all();
         return view('menu.index',['menus' => $menus]);
@@ -20,23 +22,29 @@ class MenuController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $recipes = Recipe::all();
+        return view('menu.create',['recipes' => $recipes]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Menu $menu
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Menu $menu)
     {
-        //
+        $recipeId = $request->recipe_id;
+        $menu->fill($request->all())->save();
+
+        $menu->recipes()->attach($recipeId);
+
+        return back()->with('result', 'メニューが追加されました');
     }
 
     /**
@@ -64,7 +72,7 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

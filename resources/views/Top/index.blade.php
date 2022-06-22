@@ -9,4 +9,7 @@
     <li>
         <a href="{{route('menu.index')}}">メニュー一覧</a>
     </li>
+    <li>
+        <a href="{{route('menu.create')}}">メニュー追加</a>
+    </li>
 </ul>

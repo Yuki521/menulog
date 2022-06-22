@@ -10,11 +10,16 @@ class Menu extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'type'
+    ];
+
     /**
      * @return BelongsToMany
      */
     public function recipes(): BelongsToMany
     {
-        return $this->belongsToMany(Recipe::class);
+        return $this->belongsToMany(Recipe::class)->withTimestamps();
     }
 }
