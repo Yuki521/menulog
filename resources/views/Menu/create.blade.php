@@ -19,7 +19,7 @@
         <tr>
             <th>レシピ</th>
             <td>
-                <select name="recipe_id" multiple>
+                <select name="recipe_ids[]" multiple>
                     @foreach ($recipes as $recipe)
                         <option value="{{ $recipe->id }}">{{ $recipe->title }}</option>
                     @endforeach

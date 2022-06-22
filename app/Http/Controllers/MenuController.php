@@ -39,10 +39,10 @@ class MenuController extends Controller
      */
     public function store(Request $request, Menu $menu)
     {
-        $recipeId = $request->recipe_id;
+        $recipeIds = $request->recipe_ids;
         $menu->fill($request->all())->save();
 
-        $menu->recipes()->attach($recipeId);
+        $menu->recipes()->sync($recipeIds);
 
         return back()->with('result', 'メニューが追加されました');
     }
