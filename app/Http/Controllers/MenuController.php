@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MenuPostRequest;
 use App\Models\Menu;
 use App\Models\Recipe;
 use Illuminate\Http\RedirectResponse;
@@ -33,11 +34,11 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param MenuPostRequest $request
      * @param Menu $menu
      * @return RedirectResponse
      */
-    public function store(Request $request, Menu $menu)
+    public function store(MenuPostRequest $request, Menu $menu): RedirectResponse
     {
         $recipeIds = $request->recipe_ids;
         $menu->fill($request->all())->save();
@@ -50,12 +51,14 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $menuId
+     * @return View
      */
-    public function show($id)
+    public function show(int $menuId): View
     {
-        //
+        $menu = Menu::with('recipes')->find($menuId);
+
+        return view('menu.show',['menu' => $menu]);
     }
 
     /**

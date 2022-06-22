@@ -12,7 +12,7 @@
         <tr>
             <th>タイプ</th>
             <td><input type="text" name="type" value="{{old('type')}}"></td>
-            @error('calorie')
+            @error('type')
             <td>{{$message}}</td>
             @enderror
         </tr>
@@ -25,7 +25,7 @@
                     @endforeach
                 </select>
             </td>
-            @error('calorie')
+            @error('recipe_ids')
             <td>{{$message}}</td>
             @enderror
         </tr>
