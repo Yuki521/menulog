@@ -22,12 +22,16 @@ Route::get('/', function () {
 
 Route::get('/', [TopController::class, 'index']);
 
-Route::get('recipe/index', [RecipeController::class, 'index'])->name('recipe.index');
-
-Route::get('recipe/create', [RecipeController::class, 'create'])->name('recipe.create');
-
-Route::post('recipe/create', [RecipeController::class, 'store'])->name('recipe.create');
-
-Route::delete('/', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+Route::controller(RecipeController::class)
+    ->prefix('recipe')
+    ->as('recipe.')
+    ->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('create');
+        Route::get('{recipeId}/edit', 'edit')->name('edit');
+        Route::put('{recipeId}/edit', 'update')->name('update');
+        Route::delete('/', 'destroy')->name('destroy');
+    });
 
 Route::resources(['menu' => MenuController::class]);

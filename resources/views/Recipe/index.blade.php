@@ -11,6 +11,12 @@
             <td>{{$recipe->title}}</td>
             <td>{{$recipe->calorie}}</td>
             <td>
+                <form method="POST" action="{{ route('recipe.edit', ['recipeId'=>$recipe->id]) }}">
+                    @method('GET')
+                    <button>編集</button>
+                </form>
+            </td>
+            <td>
                 <form method="POST" action="{{ route('recipe.destroy') }}">
                     @csrf
                     @method('DELETE')
