@@ -13,7 +13,6 @@
         <td>{{$menu->type}}</td>
         <td>
             <form method="GET" action="{{ route('menu.show',['menu' => $menu->id]) }}">
-                @csrf
                 @method('SHOW')
                 <button>詳細</button>
             </form>

@@ -64,24 +64,33 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $menuId
+     * @return View
      */
-    public function edit($id)
+    public function edit(int $menuId): View
     {
-        //
+        $menu = Menu::with('recipes')->findOrFail($menuId);
+        $recipes = Recipe::all();
+
+        return view('menu.edit', ['menu' => $menu,'recipes' => $recipes]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param MenuPostRequest $request
+     * @param int $menuId
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(MenuPostRequest $request, int $menuId): RedirectResponse
     {
-        //
+        $recipeIds = $request->recipe_ids;
+        $menu = Menu::findOrFail($menuId);
+        $menu->fill($request->all())->save();
+
+        $menu->recipes()->sync($recipeIds);
+
+        return back()->with('result', 'メニューが修正されました');
     }
 
     /**

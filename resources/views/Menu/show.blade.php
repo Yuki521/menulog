@@ -16,4 +16,8 @@
         @endforeach
     </tr>
 </table>
+<form method="GET" action="{{ route('menu.edit',['menu' => $menu->id]) }}">
+    @method('GET')
+    <button>編集</button>
+</form>
 <a href="{{route('menu.index')}}">戻る</a>
