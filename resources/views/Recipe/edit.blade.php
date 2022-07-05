@@ -1,24 +1,26 @@
-<form method="POST" action="{{route('recipe.update',['recipeId'=>$recipe->id])}}">
-    <table>
-        @method('PUT')
-        @csrf
-        <tr>
-            <th>レシピ名</th>
-            <td><input type="text" name="title" value="{{old('title',$recipe->title)}}"></td>
-            @error('title')
-            <td>{{$message}}</td>
-            @enderror
-        </tr>
-        <tr>
-            <th>カロリー</th>
-            <td><input type="text" name="calorie" value="{{old('calorie',$recipe->calorie)}}"></td>
-            @error('calorie')
-            <td>{{$message}}</td>
-            @enderror
-        </tr>
-        {{ session('result') }}
-    </table>
-    <button>送信</button>
+<x-app>
+    <form method="POST" action="{{route('recipe.update',['recipeId'=>$recipe->id])}}">
+        <table>
+            @method('PUT')
+            @csrf
+            <tr>
+                <th>レシピ名</th>
+                <td class="px-2 py-2"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"type="text" name="title" value="{{old('title',$recipe->title)}}"></td>
+                @error('title')
+                <td class="px-2 py-2">{{$message}}</td>
+                @enderror
+            </tr>
+            <tr>
+                <th>カロリー</th>
+                <td class="px-2 py-2"><input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"type="text" name="calorie" value="{{old('calorie',$recipe->calorie)}}"></td>
+                @error('calorie')
+                <td class="px-2 py-2">{{$message}}</td>
+                @enderror
+            </tr>
+            {{ session('result') }}
+        </table>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">送信</button>
 
-    <a href="{{route('recipe.index')}}">戻る</a>
-</form>
+        <a href="{{route('recipe.index')}}">戻る</a>
+    </form>
+</x-app>

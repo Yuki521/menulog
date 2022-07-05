@@ -22,4 +22,15 @@ class Menu extends Model
     {
         return $this->belongsToMany(Recipe::class)->withTimestamps();
     }
+
+
+    /**
+     * メニューの合計カロリーを返す
+     *
+     * @return float
+     */
+    public function getCalorie(): float
+    {
+        return array_sum($this->recipes()->pluck('calorie')->toArray());
+    }
 }
