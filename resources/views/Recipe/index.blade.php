@@ -1,4 +1,5 @@
 <x-app>
+    @section('title','レシピ一覧')
     <table>
         <tr>
             <th>ID</th>

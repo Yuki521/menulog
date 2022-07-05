@@ -1,4 +1,5 @@
 <x-app>
+    @section('title','メニュー編集')
 <form method="POST" action="{{route('menu.update',['menu'=>$menu->id])}}">
     <table>
         @method('PATCH')

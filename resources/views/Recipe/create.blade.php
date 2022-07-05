@@ -1,4 +1,5 @@
 <x-app>
+    @section('title','レシピ追加')
     <form method="POST" action="">
         <table>
             @method('POST')

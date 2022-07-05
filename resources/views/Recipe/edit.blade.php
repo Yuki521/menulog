@@ -1,4 +1,5 @@
 <x-app>
+    @section('title','レシピ編集')
     <form method="POST" action="{{route('recipe.update',['recipeId'=>$recipe->id])}}">
         <table>
             @method('PUT')
@@ -21,6 +22,6 @@
         </table>
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">送信</button>
 
-        <a href="{{route('recipe.index')}}">戻る</a>
+        <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" href="{{route('recipe.index')}}">戻る</a>
     </form>
 </x-app>
