@@ -27,7 +27,7 @@ class MenuController extends Controller
      */
     public function create(): View
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::paginate(3);
         return view('menu.create',['recipes' => $recipes]);
     }
 
